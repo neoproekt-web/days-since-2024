@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сколько времени прошло с 17 ноября 2024?</title>
+    <style>
+        :root {
+            --primary: #2E3440; /* Тёмно-серый (как северное небо) */
+            --secondary: #5E81AC; /* Мягкий синий */
+            --background: #F8F9FA; /* Светлый фон */
+            --text: #3B4252; /* Основной текст */
+            --accent: #88C0D0; /* Акцентный цвет (лёд/вода) */
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            text-align: center;
+            background-color: var(--background);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            max-width: 600px;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        h1 {
+            color: var(--primary);
+            font-weight: 300;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+        
+        .time {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .time-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .time-value {
+            font-size: 3rem;
+            font-weight: 200;
+            color: var(--secondary);
+            line-height: 1;
+        }
+        
+        .time-label {
+            font-size: 1rem;
+            color: var(--text);
+            opacity: 0.7;
+            text-transform: lowercase;
+        }
+        
+        .date {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: var(--text);
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>С 17 ноября 2024 года прошло:</h1>
+        
+        <div class="time" id="timePassed">
+            <!-- Сюда вставится время -->
+        </div>
+        
+        <div class="date" id="currentDate">
+            <!-- Текущая дата -->
+        </div>
+    </div>
+
+    <script>
+        function updateTime() {
+            const startDate = new Date('2024-11-17T00:00:00');
+            const now = new Date();
+            
+            const diffInMs = now - startDate;
+            const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+            
+            // Рассчитываем годы, месяцы и дни
+            let years = Math.floor(diffInDays / 365);
+            let remainingDays = diffInDays % 365;
+            let months = Math.floor(remainingDays / 30);
+            remainingDays = remainingDays % 30;
+            
+            // Форматируем вывод
+            document.getElementById('timePassed').innerHTML = `
+                <div class="time-block">
+                    <span class="time-value">${years}</span>
+                    <span class="time-label">лет</span>
+                </div>
+                <div class="time-block">
+                    <span class="time-value">${months}</span>
+                    <span class="time-label">месяцев</span>
+                </div>
+                <div class="time-block">
+                    <span class="time-value">${remainingDays}</span>
+                    <span class="time-label">дней</span>
+                </div>
+            `;
+            
+            // Текущая дата
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            document.getElementById('currentDate').textContent = `Сегодня: ${now.toLocaleDateString('ru-RU', options)}`;
+        }
+        
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>
